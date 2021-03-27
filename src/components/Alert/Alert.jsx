@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {AlertContext} from "./context/AlertContext";
 
-const Alert = ({alert}) => {
+const Alert = () => {
+
+    const { alert, hide } = useContext(AlertContext);
+
+    if (!alert) return null;
 
     return (
         <div
@@ -11,6 +16,7 @@ const Alert = ({alert}) => {
                 type="button"
                 className="btn-close"
                 aria-label="Close"
+                onClick={hide}
             ></button>
         </div>
     )
