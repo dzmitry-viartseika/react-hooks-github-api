@@ -1,10 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useReducer } from 'react';
 import { AlertContext }  from "../Alert/context/AlertContext";
-import gitHubApi from '../../api/gitHubApi/api';
+import { GitHubContext } from "../GitHub/context/GithubContext";
+import AlertReducer from "../Alert/context/AlertReducer";
 
 const Search = () => {
     const { show } = useContext(AlertContext);
+    const [state, dispatch] = useReducer(AlertReducer, null)
     const [value, setValue] = useState('');
+    const github = useContext(GitHubContext)
 
     const onSubmit = async event => {
         if (event.key !== 'Enter') {
@@ -12,23 +15,7 @@ const Search = () => {
         }
 
         if (value.trim()) {
-            try {
-                // this.setState({
-                //     isLoader: true
-                // })
-                const { data } = await gitHubApi.searchUser(value);
-                const quiz = data;
-
-                // this.setState({
-                //     isLoader: false,
-                //     quiz,
-                // })
-            } catch (err) {
-                // this.setState({
-                //     isLoader: false
-                // })
-                console.error(err);
-            }
+            github.search(value.trim());
         } else {
             show('Введите данные пользователя')
         }

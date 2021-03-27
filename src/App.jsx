@@ -16,7 +16,7 @@ function App() {
                   Object.values(routes).map(route =>
                       <Route
                           exact
-                          key={route.component}
+                          key={route.id}
                           path={route.url}
                           component={route.component}
                       /> )}

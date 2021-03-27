@@ -9,7 +9,7 @@ export default {
         const instCred = axios.create({
             baseURL: CURRENT_SERVER,
         });
-        return instCred.post(`/users?q=${value}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`);
+        return instCred.get(`/search/users?q=${value}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`);
     },
     getQuizList() {
         const instCred = axios.create({
@@ -17,11 +17,10 @@ export default {
         });
         return instCred.get('quizes.json');
     },
-    getQuizById(id) {
-        console.log('id', id)
+    getUserById(id) {
         const instCred = axios.create({
             baseURL: CURRENT_SERVER,
         });
-        return instCred.get(`quizes/${id}.json`);
+        return instCred.get(`/search/users/${id}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`);
     }
 };

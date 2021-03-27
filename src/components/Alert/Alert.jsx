@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { AlertContext } from "./context/AlertContext";
 
-const Alert = () => {
+const Alert = (props) => {
 
-    const { alert, hide } = useContext(AlertContext);
+    const { alert } = useContext(AlertContext);
 
     console.log('alert', alert)
 
@@ -18,8 +18,8 @@ const Alert = () => {
                 type="button"
                 className="btn-close"
                 aria-label="Close"
-                onClick={hide}
-            ></button>
+                onClick={props.test}
+            >wertey</button>
         </div>
     )
 };

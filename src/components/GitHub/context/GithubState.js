@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { GitHubContext } from './GithubContext';
 import {githubReducer} from "./GitHubReducer";
 import {CLEAR_USERS, GET_REPOS, GET_USER, SEARCH_USERS, SET_LOADING} from "../../../constants/types/types";
+import gitHubApi from "../../../api/gitHubApi/api";
 
 console.log(process.env.REACT_APP_CLIENT_ID)
 
@@ -16,10 +17,16 @@ export const GithubState = ({children}) => {
 
     const search = async value => {
         setLoading()
-        dispatch({
-            type: SEARCH_USERS,
-            payload: []
-        })
+        try {
+            const { data } = await gitHubApi.searchUser(value);
+
+            dispatch({
+                type: SEARCH_USERS,
+                payload: data.items
+            })
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     const getUserById = async name => {
@@ -42,6 +49,8 @@ export const GithubState = ({children}) => {
     const setLoading = () => dispatch({type: SET_LOADING});
 
     const {user, users, repos, loading} = state;
+
+    console.log('users', users);
 
     return (
         <GitHubContext.Provider value={{
