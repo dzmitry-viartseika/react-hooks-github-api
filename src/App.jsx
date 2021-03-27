@@ -11,7 +11,7 @@ function App() {
       <>
           <Navbar />
           <div className="container pt-3">
-              <Alert alert={{name: 'Alert'}}/>
+              <Alert alert={{text: 'Alert'}}/>
               {
                   Object.values(routes).map(route =>
                       <Route
