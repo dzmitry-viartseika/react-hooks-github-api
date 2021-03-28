@@ -1,14 +1,16 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import navList from '../../constants/navigation/navList';
 
 const Navbar = () => {
 
     return (
         <nav className={'navbar navbar-dark bg-primary navbar-expand-lg'}>
-            <div className={'navbar-brand'}>
-                GitHub Поиск
-            </div>
+            <Link to="/">
+                <div className={'navbar-brand'}>
+                    GitHub Поиск
+                </div>
+            </Link>
             <ul className={'navbar-nav'}>
                 {
                     navList.map((item, index) => (

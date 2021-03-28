@@ -4,8 +4,6 @@ import {githubReducer} from "./GitHubReducer";
 import {CLEAR_USERS, GET_REPOS, GET_USER, SEARCH_USERS, SET_LOADING} from "../../../constants/types/types";
 import gitHubApi from "../../../api/gitHubApi/api";
 
-console.log(process.env.REACT_APP_CLIENT_ID)
-
 export const GithubState = ({children}) => {
     const initialState = {
         user: {},
@@ -30,7 +28,6 @@ export const GithubState = ({children}) => {
     }
 
     const getUser = async name => {
-        console.log('name', name)
         setLoading()
         try {
             const { data } = await gitHubApi.getUserById(name);

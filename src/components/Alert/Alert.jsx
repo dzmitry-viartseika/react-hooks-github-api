@@ -5,8 +5,6 @@ const Alert = (props) => {
 
     const { alert } = useContext(AlertContext);
 
-    console.log('alert', alert)
-
     if (!alert) return null;
 
     return (

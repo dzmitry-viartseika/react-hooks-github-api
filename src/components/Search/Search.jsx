@@ -1,11 +1,9 @@
-import React, { useContext, useState, useReducer } from 'react';
+import React, { useContext, useState } from 'react';
 import { AlertContext }  from "../Alert/context/AlertContext";
 import { GitHubContext } from "../GitHub/context/GithubContext";
-import AlertReducer from "../Alert/context/AlertReducer";
 
 const Search = () => {
     const { show, hide } = useContext(AlertContext);
-    const [state, dispatch] = useReducer(AlertReducer, null)
     const [value, setValue] = useState('');
     const github = useContext(GitHubContext)
 
