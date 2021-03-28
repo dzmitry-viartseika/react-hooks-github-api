@@ -29,20 +29,33 @@ export const GithubState = ({children}) => {
         }
     }
 
-    const getUserById = async name => {
+    const getUser = async name => {
+        console.log('name', name)
         setLoading()
-        dispatch({
-            type: GET_USER,
-            payload: {}
-        })
+        try {
+            const { data } = await gitHubApi.getUserById(name);
+
+            dispatch({
+                type: GET_USER,
+                payload: data
+            })
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     const getRepos = async name => {
         setLoading()
-        dispatch({
-            type: GET_REPOS,
-            payload: []
-        })
+        try {
+            const { data } = await gitHubApi.getReposList(name);
+
+            dispatch({
+                type: GET_REPOS,
+                payload: data
+            })
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     const clearUsers = () => dispatch({type: CLEAR_USERS});
@@ -50,14 +63,12 @@ export const GithubState = ({children}) => {
 
     const {user, users, repos, loading} = state;
 
-    console.log('users', users);
-
     return (
         <GitHubContext.Provider value={{
             setLoading,
             search,
             getRepos,
-            getUserById,
+            getUser,
             clearUsers,
             user,
             users,

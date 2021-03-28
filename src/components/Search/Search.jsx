@@ -4,7 +4,7 @@ import { GitHubContext } from "../GitHub/context/GithubContext";
 import AlertReducer from "../Alert/context/AlertReducer";
 
 const Search = () => {
-    const { show } = useContext(AlertContext);
+    const { show, hide } = useContext(AlertContext);
     const [state, dispatch] = useReducer(AlertReducer, null)
     const [value, setValue] = useState('');
     const github = useContext(GitHubContext)
@@ -14,7 +14,10 @@ const Search = () => {
             return
         }
 
+        github.clearUsers();
+
         if (value.trim()) {
+            hide()
             github.search(value.trim());
         } else {
             show('Введите данные пользователя')

@@ -15,7 +15,7 @@ const routes = {
     },
     profile: {
         id: 3,
-        url: '/profile',
+        url: '/profile/:name',
         component: Profile
     },
 }
